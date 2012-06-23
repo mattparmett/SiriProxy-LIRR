@@ -1,7 +1,7 @@
 #Useful for siri query "When's the next train from ___ to ___?"
 require 'rubygems'
 require 'mechanize'
-require 'CSV'
+require 'csv'
 #require 'time'
 
 ###
