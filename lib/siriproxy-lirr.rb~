@@ -11,6 +11,8 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		stations_csv_file = "/home/matt/git repos/SiriProxy-LIRR/stations.csv"		
 		from_station = Station.new(from_station_name, stations_csv_file)
 		to_station = Station.new(to_station_name, stations_csv_file)
+		puts from_station.name
+		puts to_station.name
 		train = getNextTrain(from_station, to_station, stations_csv_file)
 
 		if train.has_transfer?
