@@ -82,7 +82,7 @@ class Train
 	end
 	
 	def has_transfer?
-		if @trans_station_name.length > 1 and @trans_time.length > 1
+		if @trans_station_name and @trans_time #changed from length to nil
 			true
 		else
 			false
