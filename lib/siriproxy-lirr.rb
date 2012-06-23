@@ -26,5 +26,6 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		else
 			say "No trains found."
 		end
+	request_completed
 	end
 end

@@ -15,7 +15,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		puts to_station.name
 		train = getNextTrain(from_station, to_station, stations_csv_file)
 		
-		unless train == []
+		if !(train == [])
 			if train.has_transfer?
 				say "The next train from " + train.from_station_name + " to " + train.to_station_name + " leaves at " + train.dep_time + " and arrives at " + train.arr_time + ", with a transfer at " + train.trans_station_name + " at " + train.trans_time + "."
 
@@ -23,6 +23,8 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 				say "The next train from " + train.from_station_name + " to " + train.to_station_name + " leaves at " + train.dep_time + " and arrives at " + train.arr_time + "."
 			end
 
+		else
+			say "No trains found."
 		end
 	end
 end
