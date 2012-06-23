@@ -34,4 +34,9 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		nextTrain(from_station_name, to_station_name)
 		request_completed
 	end
+
+	listen_for /when's the next train from ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|	
+		nextTrain(from_station_name, to_station_name)
+		request_completed
+	end
 end
