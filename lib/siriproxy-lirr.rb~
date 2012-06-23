@@ -3,17 +3,19 @@ require 'rubygems'
 require 'lirr.rb'
 
 class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
-	def initialize(config)
+	attr_accessor :stations_csv_file
+
+	def initialize(config = {})
+		self.stations_csv_file = config['stations_csv_file']
 	end
 
 
-	listen_for /when is the next train from ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|
-		stations_csv_file = "/home/matt/git repos/SiriProxy-LIRR/stations.csv"		
-		from_station = Station.new(from_station_name, stations_csv_file)
-		to_station = Station.new(to_station_name, stations_csv_file)
+	listen_for /when is the next train from ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|	
+		from_station = Station.new(from_station_name, self.stations_csv_file)
+		to_station = Station.new(to_station_name, self.stations_csv_file)
 		puts from_station.name
 		puts to_station.name
-		train = getNextTrain(from_station, to_station, stations_csv_file)
+		train = getNextTrain(from_station, to_station, self.stations_csv_file)
 		
 		if !(train == [])
 			if train.has_transfer?
