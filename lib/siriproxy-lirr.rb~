@@ -7,7 +7,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 	end
 
 
-	listen_for /when is the next train from (.*) to (.*)?/i do |from_station_name, to_station_name|
+	listen_for /when is the next train from ([a-z]*) to ([a-z]*)?/i do |from_station_name, to_station_name|
 		stations_csv_file = "/home/matt/git repos/SiriProxy-LIRR/stations.csv"		
 		from_station = Station.new(from_station_name, stations_csv_file)
 		to_station = Station.new(to_station_name, stations_csv_file)
