@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'mechanize'
 require 'csv'
-require 'time'
+#require 'time'
 
 ###
 #Begin Classes
@@ -307,21 +307,6 @@ end
 ###
 #Begin code body
 
-departure_station = Station.new("Kew Gardens")
-destination = Station.new("Deer Park")
-train = getNextTrain(departure_station, destination)
-
-if train.has_transfer?
-	puts "The next train from " + train.from_station_name + " to " + train.to_station_name + " leaves at " + train.dep_time + " and arrives at " + train.arr_time + ", with a transfer at " + train.trans_station_name + " at " + train.trans_time + "."
-else
-	puts "The next train from " + train.from_station_name + " to " + train.to_station_name + " leaves at " + train.dep_time + " and arrives at " + train.arr_time + "."
-end
-
-if train.peak?
-	puts "This train is more expensive and crowded because it's a peak train."
-else
-	puts "This is an off-peak train."
-end
 
 #End code body
 ###

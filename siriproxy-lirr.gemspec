@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
   # s.add_runtime_dependency "rest-client"
   s.add_runtime_dependency "mechanize"
   s.add_runtime_dependency "csv"
-  s.add_runtime_dependency "time"
+  # s.add_runtime_dependency "time"
 end
