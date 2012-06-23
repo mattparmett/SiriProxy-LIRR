@@ -43,19 +43,12 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 	end
 
 	def trainSchedule(from_station_name, to_station_name)
-		from_station = Station.new(from_station_name, stations_csv_file)
-		to_station = Station.new(to_station_name, stations_csv_file)		
+		from_station = Station.new(from_station_name, self.stations_csv_file)
+		to_station = Station.new(to_station_name, self.stations_csv_file)		
 			
 		trains = getTrainTimes(from_station, to_station, getTime(), getAMPM(), getTodaysDate(), self.stations_csv_file)
 		
-		trains.each do |train|
-			if train.is_a? Train
-				puts train.to_timetable
-			else
-				puts "Not a Train."
-			end
-		end
-		#say trains[0].to_timetable + "\n" + trains[1].to_timetable + "\n" + trains[2].to_timetable + "\n" + trains[3].to_timetable + "\n" + trains[4].to_timetable + "\n", spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
+		say trains[0].to_timetable + "\n" + trains[1].to_timetable + "\n" + trains[2].to_timetable + "\n" + trains[3].to_timetable + "\n" + trains[4].to_timetable + "\n", spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
 	end
 
 
