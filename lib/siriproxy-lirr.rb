@@ -9,8 +9,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		self.stations_csv_file = config['stations_csv_file']
 	end
 
-
-	listen_for /(when is|when's) the next train from ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|	
+	def nextTrain(from_station_name, to_station_name)
 		from_station = Station.new(from_station_name, self.stations_csv_file)
 		to_station = Station.new(to_station_name, self.stations_csv_file)
 		puts from_station.name
@@ -28,6 +27,11 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		else
 			say "No trains found."
 		end
-	request_completed
+	end
+
+
+	listen_for /when is the next train from ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|	
+		nextTrain(from_station_name, to_station_name)
+		request_completed
 	end
 end
