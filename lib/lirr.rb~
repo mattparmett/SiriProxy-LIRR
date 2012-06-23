@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'mechanize'
 require 'csv'
-#require 'time'
+require 'time'
 
 ###
 #Begin Classes
@@ -153,7 +153,7 @@ end
 #args = [from_station, to_station, request_time_value, request_am_pm_value, request_date, station_csv_file]
 def getTrainTimes(*args)
 	#Assign more useful variable names to args
-	if args[5] != 0
+	if args[5].is_a? String
 		station_csv_file = args[5]
 	else
 		station_csv_file = "stations.csv"
@@ -243,7 +243,7 @@ def getTrainTimes(*args)
 			
 			#Finished with train info, so create Train object, add it to result array, and reset train info array
 			begin
-				train = Train.new(train_info[0], Station.new(from_station_id), train_info[1], Station.new(to_station_id), Station.new(train_info[2]), train_info[3], train_info[4], train_info[5])
+				train = Train.new(train_info[0], Station.new(from_station_id, station_csv_file), train_info[1], Station.new(to_station_id, station_csv_file), Station.new(train_info[2]), train_info[3], train_info[4], train_info[5])
 			rescue StationError => e
 				puts "Station invalid."
 			end
