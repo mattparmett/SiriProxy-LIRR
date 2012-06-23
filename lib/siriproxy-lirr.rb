@@ -1,6 +1,6 @@
 #Useful for siri query "When's the next train from ___ to ___?"
 require 'rubygems'
-require './lirr.rb'
+require 'lirr.rb'
 
 class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 	def initialize(config)
