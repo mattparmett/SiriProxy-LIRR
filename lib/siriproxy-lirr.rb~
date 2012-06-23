@@ -2,6 +2,16 @@
 require 'rubygems'
 require 'lirr.rb'
 
+class Train
+	def to_siri
+		if train.has_transfer?
+			"The next train from " + self.from_station_name + " to " + self.to_station_name + " leaves at " + self.dep_time + " and arrives at " + self.arr_time + ", with a transfer at " + self.trans_station_name + " at " + self.trans_time + "."
+
+		else
+			"The next train from " + self.from_station_name + " to " + self.to_station_name + " leaves at " + self.dep_time + " and arrives at " + self.arr_time + "."
+		end
+	end
+
 class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 	attr_accessor :stations_csv_file
 
@@ -31,6 +41,11 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 
 
 	listen_for /when is the next train from ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|	
+		nextTrain(from_station_name, to_station_name)
+		request_completed
+	end
+
+	listen_for /when's the next train from ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|	
 		nextTrain(from_station_name, to_station_name)
 		request_completed
 	end
