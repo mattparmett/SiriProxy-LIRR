@@ -11,6 +11,7 @@ class Train
 			"The next train from " + self.from_station_name + " to " + self.to_station_name + " leaves at " + self.dep_time + " and arrives at " + self.arr_time + "."
 		end
 	end
+end
 
 class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 	attr_accessor :stations_csv_file

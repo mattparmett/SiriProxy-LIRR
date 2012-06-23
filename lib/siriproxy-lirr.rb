@@ -4,7 +4,7 @@ require 'lirr.rb'
 
 class Train
 	def to_siri
-		if train.has_transfer?
+		if self.has_transfer?
 			"The next train from " + self.from_station_name + " to " + self.to_station_name + " leaves at " + self.dep_time + " and arrives at " + self.arr_time + ", with a transfer at " + self.trans_station_name + " at " + self.trans_time + "."
 
 		else
