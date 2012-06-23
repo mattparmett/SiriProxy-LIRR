@@ -243,7 +243,7 @@ def getTrainTimes(*args)
 			
 			#Finished with train info, so create Train object, add it to result array, and reset train info array
 			begin
-				train = Train.new(train_info[0], Station.new(from_station_id, station_csv_file), train_info[1], Station.new(to_station_id, station_csv_file), Station.new(train_info[2]), train_info[3], train_info[4], train_info[5])
+				train = Train.new(train_info[0], Station.new(from_station_id, station_csv_file), train_info[1], Station.new(to_station_id, station_csv_file), Station.new(train_info[2], station_csv_file), train_info[3], train_info[4], train_info[5])
 			rescue StationError => e
 				puts "Station invalid."
 			end
