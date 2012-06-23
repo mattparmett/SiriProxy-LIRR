@@ -149,7 +149,7 @@ def getAMPM()
 end
 
 #Takes search parameters and writes search result timetable to 'results.csv'
-#Returns an array of 5 arrays, each of which represents an individual train. Each of the 5 arrays includes [departure time, arrival time, transfer location, transfer time, duration, peak/off peak]
+#Returns an array of 5 Trains, each of which represents an individual train result.
 #args = [from_station, to_station, request_time_value, request_am_pm_value, request_date, station_csv_file]
 def getTrainTimes(*args)
 	#Assign more useful variable names to args

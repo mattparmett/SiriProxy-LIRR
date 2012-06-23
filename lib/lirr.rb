@@ -233,12 +233,10 @@ def getTrainTimes(*args)
 			i = i + 1
 		elsif i < 9
 			text = t.inner_text()
-			
 			train_info << text
 			i = i + 1
 		elsif i == 9
 			text = t.inner_text()
-			
 			train_info << text
 			
 			#Finished with train info, so create Train object, add it to result array, and reset train info array
