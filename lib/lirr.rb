@@ -33,7 +33,7 @@ class Station
 		if args[1].is_a? String
 			data = CSV.read(args[1])
 		else
-			data = CSV.read("stations.csv")
+			data = CSV.read("/home/matt/git stations.csv")
 		end
 		
 		#If argument passed is name, assign name and get id. If id, assign id and get name.

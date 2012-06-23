@@ -1,7 +1,7 @@
 #Useful for siri query "When's the next train from ___ to ___?"
 require 'rubygems'
 require 'mechanize'
-require 'CSV'
+require 'csv'
 #require 'time'
 
 ###
@@ -33,7 +33,7 @@ class Station
 		if args[1].is_a? String
 			data = CSV.read(args[1])
 		else
-			data = CSV.read("stations.csv")
+			data = CSV.read("/home/matt/git repos/SiriProxy-LIRR/stations.csv")
 		end
 		
 		#If argument passed is name, assign name and get id. If id, assign id and get name.
