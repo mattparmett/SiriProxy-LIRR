@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'mechanize'
 require 'csv'
-#require 'time'
+require 'time'
 
 ###
 #Begin Classes
@@ -273,6 +273,7 @@ def getNextTrain(*args)
 	
 	if args[2].is_a? String
 		station_csv_file = args[2]
+		puts station_csv_file
 	else
 		station_csv_file = "stations.csv"
 	end

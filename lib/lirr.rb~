@@ -33,7 +33,7 @@ class Station
 		if args[1].is_a? String
 			data = CSV.read(args[1])
 		else
-			data = CSV.read("/home/matt/git repos/SiriProxy-LIRR/stations.csv")
+			data = CSV.read("stations.csv")
 		end
 		
 		#If argument passed is name, assign name and get id. If id, assign id and get name.
@@ -273,6 +273,7 @@ def getNextTrain(*args)
 	
 	if args[2].is_a? String
 		station_csv_file = args[2]
+		puts station_csv_file
 	else
 		station_csv_file = "stations.csv"
 	end
