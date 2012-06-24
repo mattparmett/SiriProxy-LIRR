@@ -71,7 +71,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		
 		#Correct AM/PM
 		unless am_pm == "AM" or am_pm == "PM"
-			am_apm = getAMPM()
+			am_pm = getAMPM()
 		end
 
 		trains = getTrainTimes(from_station, to_station, time, am_pm, date, self.stations_csv_file)

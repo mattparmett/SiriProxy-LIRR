@@ -69,6 +69,11 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		from_station = Station.new(from_station_name, self.stations_csv_file)
 		to_station = Station.new(to_station_name, self.stations_csv_file)
 		
+		#Correct AM/PM
+		unless am_pm == "AM" or am_pm == "PM"
+			am_pm = getAMPM()
+		end
+
 		trains = getTrainTimes(from_station, to_station, time, am_pm, date, self.stations_csv_file)
 
 		if trains == []
