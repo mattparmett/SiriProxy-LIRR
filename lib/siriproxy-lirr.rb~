@@ -117,7 +117,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		request_completed	
 	end
 
-	listen_for /get the train times for ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9]):([0-9,]*[0-9]) ([a-z]*)/i do |from_station_name, to_station_name, hour, minutes, am_pm|
+	listen_for /when are the trains from ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9]):([0-9,]*[0-9]) ([a-z]*)/i do |from_station_name, to_station_name, hour, minutes, am_pm|
 		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		
@@ -139,7 +139,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		request_completed
 	end
 
-	listen_for /get the train times for ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9]) ([a-z]*)/i do |from_station_name, to_station_name, hour, am_pm|
+	listen_for /when are the trains from ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9]) ([a-z]*)/i do |from_station_name, to_station_name, hour, am_pm|
 		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		
@@ -165,7 +165,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		request_completed
 	end
 
-	listen_for /get the train times for ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9])/i do |from_station_name, to_station_name, hour|
+	listen_for /when are the trains from ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9])/i do |from_station_name, to_station_name, hour|
 		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		
@@ -187,7 +187,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		request_completed
 	end
 
-	listen_for /get the train times for ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9]):([0-9,]*[0-9])/i do |from_station_name, to_station_name, hour, minutes|
+	listen_for /when are the trains from ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9]):([0-9,]*[0-9])/i do |from_station_name, to_station_name, hour, minutes|
 		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		
