@@ -138,4 +138,70 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		trainSearch(from_station_name, to_station_name, time, am_pm, getTodaysDate())
 		request_completed
 	end
+
+	listen_for /search for trains from ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9]) ([a-z]*)/i do |from_station_name, to_station_name, hour, am_pm|
+		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		
+		#Convert hour to proper format
+    		hour = hour.to_i
+   		 if (hour < 10)
+   		 	hour = hour.to_s()
+   		 	hour = '0' + hour
+		 else
+  		  	hour = hour.to_s()
+		end
+
+		time = hour + ":00"
+
+		#Convert AM/PM to proper format
+		am_pm = am_pm.upcase
+
+		trainSearch(from_station_name, to_station_name, time, am_pm, getTodaysDate())
+		request_completed
+	end
+
+	listen_for /search for trains from ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9])/i do |from_station_name, to_station_name, hour|
+		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		
+		#Convert hour to proper format
+    		hour = hour.to_i
+   		 if (hour < 10)
+   		 	hour = hour.to_s()
+   		 	hour = '0' + hour
+		 else
+  		  	hour = hour.to_s()
+		end
+
+		time = hour + ":00"
+
+		#Convert AM/PM to proper format
+		#am_pm = am_pm.upcase
+
+		trainSearch(from_station_name, to_station_name, time, getAMPM(), getTodaysDate())
+		request_completed
+	end
+
+	listen_for /search for trains from ([a-z ]*) to ([a-z ]*) at ([0-9,]*[0-9]):([0-9,]*[0-9])/i do |from_station_name, to_station_name, hour, minutes|
+		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		
+		#Convert hour to proper format
+    		hour = hour.to_i
+   		 if (hour < 10)
+   		 	hour = hour.to_s()
+   		 	hour = '0' + hour
+		 else
+  		  	hour = hour.to_s()
+		end
+
+		time = hour + ":" + minutes
+
+		#Convert AM/PM to proper format
+		#am_pm = am_pm.upcase
+
+		trainSearch(from_station_name, to_station_name, time, getAMPM(), getTodaysDate())
+		request_completed
+	end
 end
