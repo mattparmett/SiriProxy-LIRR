@@ -220,7 +220,18 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 
 		am_pm = getAMPM()
 		
-		#Convert hour to proper format
+		#Convert hour and am_pm to proper format
+		if hour = "twelve"
+			if am_pm = "AM"
+				am_pm = "PM"
+			else
+				am_pm = "AM"
+			end
+		end
+		
+		if hour = "midnight" then am_pm = "AM"
+		if hour = "noon" then am_pm = "PM"
+
     		case hour
 			when "one" then hour = "01"
 			when "two" then hour = "02"
@@ -233,15 +244,9 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 			when "nine" then hour = "09"
 			when "ten" then hour = "10"
 			when "eleven" then hour = "11"
-			when "twelve" then 
-				hour = "12"
-				if am_pm == "AM" then am_pm = "PM"
-			when "midnight" then 
-				hour = "12"
-				am_pm = "AM"
-			when "noon" then 
-				hour = "12"
-				am_pm = "PM"
+			when "twelve" then hour = "12"
+			when "midnight" then hour = "12"
+			when "noon" then hour = "12"
 		end
 		
 		time = hour + ":00"
