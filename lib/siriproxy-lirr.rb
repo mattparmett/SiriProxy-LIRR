@@ -46,8 +46,8 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		from_station = Station.new(from_station_name, self.stations_csv_file)
 		to_station = Station.new(to_station_name, self.stations_csv_file)		
 		
-		puts from_station.name + "," from_station.id
-		puts to_station.name + "," from_station.id
+		puts from_station.name + "," + from_station.id
+		puts to_station.name + "," + from_station.id
 
 		trains = getTrainTimes(from_station, to_station, getTime(), getAMPM(), getTodaysDate(), self.stations_csv_file)
 
