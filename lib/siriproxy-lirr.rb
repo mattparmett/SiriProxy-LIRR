@@ -81,7 +81,14 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		request_completed
 	end
 
-	listen_for /get the train times (for|from) ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|
+	listen_for /get the train times for ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|
+		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}	
+		trainSchedule(from_station_name, to_station_name)
+		request_completed	
+	end
+
+	listen_for /get the train times from ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|
 		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}	
 		trainSchedule(from_station_name, to_station_name)
