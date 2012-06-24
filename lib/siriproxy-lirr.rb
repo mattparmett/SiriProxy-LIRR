@@ -42,11 +42,15 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		end
 	end
 
-	def trainSchedule(from_station_name, to_station_name, stations_csv_file)
-		from_station = Station.new(from_station_name, stations_csv_file)
-		to_station = Station.new(to_station_name, stations_csv_file)		
-			
-		trains = getTrainTimes(from_station, to_station, getTime(), getAMPM(), getTodaysDate(), stations_csv_file)
+	def trainSchedule(from_station_name, to_station_name)
+		from_station = Station.new(from_station_name, self.stations_csv_file)
+		to_station = Station.new(to_station_name, self.stations_csv_file)		
+		
+
+		trains = getTrainTimes(from_station, to_station, getTime(), getAMPM(), getTodaysDate(), self.stations_csv_file)
+
+		puts "Trains:"
+		puts trains
 		
 		say trains[0].to_timetable + "\n" + trains[1].to_timetable + "\n" + trains[2].to_timetable + "\n" + trains[3].to_timetable + "\n" + trains[4].to_timetable + "\n", spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
 	end
@@ -63,7 +67,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 	end
 
 	listen_for /get the train times for ([a-z ]*) to ([a-z]*) /i do |from_station_name, to_station_name|
-		trainSchedule(from_station_name, to_station_name, self.stations_csv_file)
+		trainSchedule(from_station_name, to_station_name)
 		request_completed	
 	end
 end
