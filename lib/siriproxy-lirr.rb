@@ -83,7 +83,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		
 			train_times << trains[i].to_timetable #i = 4
 
-			say "Here are the train times for " + from_station.name + " to " + to_station.name + " around " + time + ":\n\n" + train_times, spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
+			say "Here are the train times for " + from_station.name + " to " + to_station.name + " around " + time + ":\n\n" + train_times, spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + " around " + time + "."
 
 		end
 	end

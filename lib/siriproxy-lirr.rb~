@@ -130,6 +130,8 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
   		  	hour = hour.to_s()
 		end
 
+		time = hour + ":" + minutes
+
 		#Convert AM/PM to proper format
 		am_pm = am_pm.upcase
 
