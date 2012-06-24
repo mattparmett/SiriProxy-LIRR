@@ -155,7 +155,11 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		time = hour + ":00"
 
 		#Convert AM/PM to proper format
-		am_pm = am_pm.upcase
+		if am_pm = "o" #user said "# o'clock"
+			am_pm = getAMPM().upcase
+		else
+			am_pm = am_pm.upcase
+		end
 
 		trainSearch(from_station_name, to_station_name, time, am_pm, getTodaysDate())
 		request_completed
