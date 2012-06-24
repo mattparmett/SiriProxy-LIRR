@@ -49,10 +49,11 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 
 		trains = getTrainTimes(from_station, to_station, getTime(), getAMPM(), getTodaysDate(), self.stations_csv_file)
 
-		puts "Trains:"
-		puts trains
-		
-		say trains[0].to_timetable + "\n" + trains[1].to_timetable + "\n" + trains[2].to_timetable + "\n" + trains[3].to_timetable + "\n" + trains[4].to_timetable + "\n", spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
+		if trains == []
+			say "Error: no trains found."
+		else
+			say trains[0].to_timetable + "\n" + trains[1].to_timetable + "\n" + trains[2].to_timetable + "\n" + trains[3].to_timetable + "\n" + trains[4].to_timetable + "\n", spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
+		end
 	end
 
 
