@@ -31,10 +31,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 	def nextTrain(from_station_name, to_station_name)
 		from_station = Station.new(from_station_name, self.stations_csv_file)
 		to_station = Station.new(to_station_name, self.stations_csv_file)
-		puts from_station.name
-		puts to_station.name
 		train = getNextTrain(from_station, to_station, self.stations_csv_file)
-		
 		if !(train == [])
 			say train.to_siri
 		else
@@ -45,7 +42,6 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 	def trainSchedule(from_station_name, to_station_name)
 		from_station = Station.new(from_station_name, self.stations_csv_file)
 		to_station = Station.new(to_station_name, self.stations_csv_file)		
-
 		trains = getTrainTimes(from_station, to_station, getTime(), getAMPM(), getTodaysDate(), self.stations_csv_file)
 
 		if trains == []
@@ -81,12 +77,12 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		else
 			i = 0
 			train_times = ""
-			while i < 4 #i = 0-3
+			while i < trains.length
 				train_times << trains[i].to_timetable + "\n"
 				i = i + 1
 			end
 		
-			train_times << trains[i].to_timetable #i = 4
+			train_times << trains[i].to_timetable
 
 			say "Here are the train times for " + from_station.name + " to " + to_station.name + " around " + time + " " + am_pm + ":\n\n" + train_times, spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + " around " + time + " " + am_pm + "."
 
