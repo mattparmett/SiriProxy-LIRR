@@ -220,21 +220,20 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		
 		#Convert hour to proper format
     		case hour
-			when "one" then 1
-			when "two" then 2
-			when "three" then 3
-			when "four" then 4
-			when "five" then 5
-			when "six" then 6
-			when "seven" then 7
-			when "eight" then 8
-			when "nine" then 9
-			when "ten" then 10
-			when "eleven" then 11
-			when "twelve" then 12
+			when "one" then hour = "01"
+			when "two" then hour = "02"
+			when "three" then hour = "03"
+			when "four" then hour = "04"
+			when "five" then hour = "05"
+			when "six" then hour = "06"
+			when "seven" then hour = "07"
+			when "eight" then hour = "08"
+			when "nine" then hour = "09"
+			when "ten" then hour = "10"
+			when "eleven" then hour = "11"
+			when "twelve" then hour = "12"
 		end
-		hour = hour.to_s()
-
+		
 		time = hour + ":00"
 
 		trainSearch(from_station_name, to_station_name, time, getAMPM(), getTodaysDate())
