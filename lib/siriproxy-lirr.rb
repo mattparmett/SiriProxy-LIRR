@@ -229,8 +229,8 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 			end
 		end
 		
-		if hour = "midnight" then am_pm = "AM"
-		if hour = "noon" then am_pm = "PM"
+		if hour = "midnight" then am_pm = "AM" end
+		if hour = "noon" then am_pm = "PM" end
 
     		case hour
 			when "one" then hour = "01"
