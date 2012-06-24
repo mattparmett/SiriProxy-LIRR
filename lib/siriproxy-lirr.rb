@@ -51,7 +51,18 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		if trains == []
 			say "Error: no trains found."
 		else
-			say "Here are the train times for " + from_station.name + " to " + to_station.name + ":\n\n" + trains[0].to_timetable + "\n" + trains[1].to_timetable + "\n" + trains[2].to_timetable + "\n" + trains[3].to_timetable + "\n" + trains[4].to_timetable + "\n", spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
+			i = 0
+			train_times = ""
+			while i < 4
+				train_times << trains[i].to_timetable + "\n"
+				i = i + 1
+			end
+			if i = 4
+				train_times << trains[i].to_timetable
+			end
+			say "Here are the train times for " + train_times, spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
+
+#+ from_station.name + " to " + to_station.name + ":\n\n" + trains[0].to_timetable + "\n" + trains[1].to_timetable + "\n" + trains[2].to_timetable + "\n" + trains[3].to_timetable + "\n" + trains[4].to_timetable + "\n", spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
 		end
 	end
 
