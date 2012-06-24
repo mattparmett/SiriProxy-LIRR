@@ -213,4 +213,31 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		trainSearch(from_station_name, to_station_name, time, getAMPM(), getTodaysDate())
 		request_completed
 	end
+
+	listen_for /when are the trains from ([a-z ]*) to ([a-z ]*) at ([a-z ]*)/i do |from_station_name, to_station_name, hour|
+		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}
+		
+		#Convert hour to proper format
+    		case hour
+			when "one" then 1
+			when "two" then 2
+			when "three" then 3
+			when "four" then 4
+			when "five" then 5
+			when "six" then 6
+			when "seven" then 7
+			when "eight" then 8
+			when "nine" then 9
+			when "ten" then 10
+			when "eleven" then 11
+			when "twelve" then 12
+		end
+		hour = hour.to_s()
+
+		time = hour + ":00"
+
+		trainSearch(from_station_name, to_station_name, time, getAMPM(), getTodaysDate())
+		request_completed
+	end
 end
