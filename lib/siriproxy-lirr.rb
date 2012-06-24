@@ -60,7 +60,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 			if i = 4
 				train_times << trains[i].to_timetable
 			end
-			say "Here are the train times for " + from.station.name + " to " + to_station.name + ":\n\n" + train_times, spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
+			say "Here are the train times for " + from_station.name + " to " + to_station.name + ":\n\n" + train_times, spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
 
 #+ from_station.name + " to " + to_station.name + ":\n\n" + trains[0].to_timetable + "\n" + trains[1].to_timetable + "\n" + trains[2].to_timetable + "\n" + trains[3].to_timetable + "\n" + trains[4].to_timetable + "\n", spoken: "Here are the train times for " + from_station.name + " to " + to_station.name + "."
 		end
@@ -81,7 +81,7 @@ class SiriProxy::Plugin::LIRR < SiriProxy::Plugin
 		request_completed
 	end
 
-	listen_for /get the train times for ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|
+	listen_for /get the train times (for|from) ([a-z ]*) to ([a-z ]*) /i do |from_station_name, to_station_name|
 		from_station_name = from_station_name.gsub(/\w+/) {|word|  word.capitalize}
 		to_station_name = to_station_name.gsub(/\w+/) {|word|  word.capitalize}	
 		trainSchedule(from_station_name, to_station_name)
